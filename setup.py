@@ -1,16 +1,10 @@
-# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-#from pip.req import parse_requirements
-import re, ast
+
+with open('requirements.txt') as f:
+	install_requires = f.read().strip().split('\n')
 
 # get version from __version__ variable in hr_extras/__init__.py
-_version_re = re.compile(r'__version__\s+=\s+(.*)')
-
-with open('hr_extras/__init__.py', 'rb') as f:
-    version = str(ast.literal_eval(_version_re.search(
-        f.read().decode('utf-8')).group(1)))
-
-requirements = parse_requirements("requirements.txt", session="")
+from hr_extras import __version__ as version
 
 setup(
 	name='hr_extras',
